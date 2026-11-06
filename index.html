@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,708 +11,143 @@
 
 <style>
 :root {
-  --black:#090909;
-  --panel:#111111;
-  --panel2:#171717;
-  --white:#f1eee9;
-  --muted:#99938f;
-  --red:#8d1828;
-  --bright:#c52b40;
-  --line:#292525;
-  --mono:'DM Mono',monospace;
-  --sans:'Space Grotesk',sans-serif;
-}
-
-* { box-sizing:border-box; margin:0; padding:0; }
-
-html { scroll-behavior:smooth; }
-
-body {
-  background:var(--black);
-  color:var(--white);
-  font-family:var(--sans);
-  overflow-x:hidden;
-}
-
-button, a { font:inherit; }
-button { cursor:pointer; }
-a { color:inherit; text-decoration:none; }
-
-::selection { background:var(--red); color:white; }
-
-nav {
-  height:76px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 6%;
-  border-bottom:1px solid var(--line);
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:rgba(9,9,9,.95);
-  backdrop-filter:blur(14px);
-}
-
-.logo {
-  font-size:19px;
-  font-weight:700;
-  letter-spacing:-1px;
-  cursor:pointer;
-}
-
-.logo span { color:var(--bright); }
-
-.nav-links {
-  display:flex;
-  align-items:center;
-  gap:32px;
-}
-
-.nav-links button {
-  color:#aaa;
-  border:0;
-  background:none;
-  font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:1.5px;
-  transition:.2s;
-}
-
-.nav-links button:hover,
-.nav-links button.active { color:white; }
-
-.nav-links button.active { border-bottom:1px solid var(--bright); padding-bottom:6px; }
-
-.menu-button {
-  display:none;
-  background:none;
-  color:white;
-  border:0;
-  font-size:24px;
-}
-
-.page { display:none; min-height:75vh; }
-.page.active { display:block; }
-
-.eyebrow {
-  font-family:var(--mono);
-  color:var(--bright);
-  font-size:10px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-}
-
-.hero {
-  min-height:650px;
-  padding:110px 8% 100px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-  border-bottom:1px solid var(--line);
-}
-
-.hero::after {
-  content:"";
-  position:absolute;
-  width:540px;
-  height:540px;
-  right:-120px;
-  top:40px;
-  border:1px solid rgba(164,34,52,.18);
-  border-radius:50%;
-  box-shadow:0 0 0 65px rgba(164,34,52,.025),0 0 0 130px rgba(164,34,52,.02);
-  pointer-events:none;
-}
-
-.hero h1 {
-  font-size:clamp(55px,10vw,130px);
-  line-height:.88;
-  letter-spacing:-8px;
-  max-width:1000px;
-  margin:28px 0;
-  position:relative;
-  z-index:1;
-}
-
-.hero h1 span { color:var(--bright); }
-
-.hero-description {
-  max-width:450px;
-  color:#aaa;
-  font-size:15px;
-  line-height:1.8;
-  margin-top:12px;
-  position:relative;
-  z-index:1;
-}
-
-.hero-bottom {
-  display:flex;
-  align-items:center;
-  gap:20px;
-  margin-top:38px;
-  position:relative;
-  z-index:1;
-}
-
-.primary-button {
-  background:var(--red);
-  border:1px solid var(--red);
-  color:white;
-  padding:15px 23px;
-  font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:2px;
-  transition:.25s;
-}
-
-.primary-button:hover { background:var(--bright); }
-
-.text-button {
-  color:#aaa;
-  border:0;
-  background:none;
-  font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:1.5px;
-}
-
-.text-button:hover { color:white; }
-
-.ticker {
-  overflow:hidden;
-  border-bottom:1px solid var(--line);
-  padding:17px 0;
-  white-space:nowrap;
-  color:#aaa;
-  font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:3px;
-}
-
-.ticker span { color:var(--bright); padding:0 20px; }
-
-.intro-section {
-  padding:100px 8%;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px;
-  align-items:center;
-}
-
-.intro-section h2 {
-  font-size:clamp(35px,5vw,62px);
-  line-height:1;
-  letter-spacing:-3px;
-  margin-top:20px;
-}
-
-.intro-section h2 span { color:var(--bright); }
-
-.intro-copy {
-  color:#aaa;
-  line-height:1.9;
-  font-size:14px;
-}
-
-.intro-copy p + p { margin-top:18px; }
-
-.section-heading {
-  padding:85px 7% 45px;
-}
-
-.section-heading h1 {
-  font-size:clamp(44px,7vw,82px);
-  letter-spacing:-4px;
-  line-height:1;
-  margin:18px 0;
-}
-
-.section-heading p {
-  max-width:520px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.8;
-}
-
-.collection-grid {
-  padding:15px 7% 100px;
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:22px;
-}
-
-.collection-card {
-  background:var(--panel);
-  border:1px solid var(--line);
-  padding:40px;
-  min-height:320px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  position:relative;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.collection-card:hover {
-  border-color:var(--bright);
-  transform:translateY(-4px);
-}
-
-.collection-card::before {
-  content:"";
-  position:absolute;
-  width:300px;
-  height:300px;
-  border:1px solid rgba(190,40,60,.2);
-  border-radius:50%;
-  top:-130px;
-  right:-70px;
-  box-shadow:0 0 0 35px rgba(190,40,60,.025),0 0 0 70px rgba(190,40,60,.025);
-}
-
-.collection-card .eyebrow { position:relative; }
-.collection-card h2 {
-  font-size:clamp(30px,5vw,55px);
-  letter-spacing:-2px;
-  margin:16px 0 10px;
-  position:relative;
-}
-.collection-card p {
-  color:#999;
-  font-size:13px;
-  line-height:1.7;
-  max-width:390px;
-  position:relative;
-}
-.collection-card .explore {
-  font-family:var(--mono);
-  color:var(--bright);
-  font-size:10px;
-  letter-spacing:2px;
-  margin-top:30px;
-  position:relative;
-}
-
-.collection-top {
-  padding:65px 7% 35px;
-  border-bottom:1px solid var(--line);
-}
-
-.back-link {
-  background:none;
-  border:0;
-  color:#aaa;
-  font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:1px;
-  margin-bottom:35px;
-}
-
-.back-link:hover { color:white; }
-
-.collection-top h1 {
-  font-size:clamp(42px,7vw,78px);
-  letter-spacing:-4px;
-  margin:15px 0;
-}
-
-.collection-top p {
-  max-width:620px;
-  color:#999;
-  font-size:14px;
-  line-height:1.8;
-}
-
-.product-section { padding:55px 7% 100px; }
-
-.product-section-heading {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  margin-bottom:30px;
-}
-
-.product-section-heading h2 {
-  font-size:25px;
-  letter-spacing:-1px;
-}
-
-.product-section-heading span {
-  font-family:var(--mono);
-  font-size:10px;
-  color:#888;
-  letter-spacing:1px;
-}
-
-.product-grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:35px 20px;
-}
-
-.product-card { cursor:pointer; min-width:0; }
-
-.product-image {
-  aspect-ratio:4/5;
-  background:#202020;
-  overflow:hidden;
-  border:1px solid #292929;
-  position:relative;
-}
-
-.product-image img {
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-  transition:transform .5s;
-}
-
-.product-card:hover .product-image img { transform:scale(1.035); }
-
-.product-overlay {
-  position:absolute;
-  bottom:12px;
-  right:12px;
-  background:rgba(9,9,9,.85);
-  padding:9px 12px;
-  font-family:var(--mono);
-  font-size:9px;
-  letter-spacing:1.5px;
-  color:white;
-  opacity:0;
-  transition:.2s;
-}
-
-.product-card:hover .product-overlay { opacity:1; }
-
-.product-info {
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  align-items:flex-start;
-  padding-top:15px;
-}
-
-.product-info h3 {
-  font-size:15px;
-  font-weight:600;
-  letter-spacing:.1px;
-}
-
-.product-info p {
-  font-family:var(--mono);
-  color:#888;
-  font-size:9px;
-  letter-spacing:1px;
-  margin-top:7px;
-}
-
-.product-number {
-  font-family:var(--mono);
-  color:#777;
-  font-size:10px;
-}
-
-.modal {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.88);
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:25px;
-  backdrop-filter:blur(8px);
-}
-
-.modal.open { display:flex; }
-
-.modal-content {
-  background:#111;
-  border:1px solid #333;
-  width:min(950px,100%);
-  max-height:92vh;
-  overflow:auto;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  position:relative;
-}
-
-.modal-image {
-  background:#202020;
-  min-height:500px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.modal-image img {
-  width:100%;
-  height:100%;
-  max-height:650px;
-  object-fit:contain;
-}
-
-.modal-details {
-  padding:55px 35px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.modal-details h2 {
-  font-size:clamp(30px,4vw,48px);
-  letter-spacing:-2px;
-  line-height:1.05;
-  margin:17px 0;
-}
-
-.modal-details p {
-  color:#999;
-  font-size:13px;
-  line-height:1.8;
-}
-
-.view-controls {
-  display:flex;
-  gap:10px;
-  margin:30px 0;
-}
-
-.view-controls button {
-  background:transparent;
-  color:#aaa;
-  border:1px solid #444;
-  padding:12px 22px;
-  font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:2px;
-}
-
-.view-controls button.selected {
-  background:var(--red);
-  border-color:var(--red);
-  color:white;
-}
-
-.back-note {
-  font-family:var(--mono);
-  font-size:9px;
-  color:#888;
-  letter-spacing:1px;
-}
-
-.close-modal {
-  position:absolute;
-  top:15px;
-  right:18px;
-  border:0;
-  background:none;
-  color:white;
-  font-size:28px;
-  z-index:2;
-}
-
-.input-section {
-  padding:75px 7% 100px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:70px;
-}
-
-.input-section h1 {
-  font-size:clamp(42px,6vw,70px);
-  letter-spacing:-4px;
-  line-height:1;
-  margin:20px 0;
-}
-
-.input-section .description {
-  color:#999;
-  font-size:14px;
-  line-height:1.9;
-  max-width:420px;
-}
-
-.private-note {
-  border-left:2px solid var(--red);
-  padding:15px 18px;
-  margin-top:30px;
-  color:#aaa;
-  font-size:12px;
-  line-height:1.8;
-  background:#111;
-}
-
-.feedback-form {
-  background:#111;
-  border:1px solid #292929;
-  padding:35px;
-}.feedback-form label {
-  display:block;
-  color:#aaa;
-  font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:1.5px;
-  margin-bottom:10px;
-  margin-top:22px;
-}
-
-.feedback-form label:first-child { margin-top:0; }
-
-.feedback-form input,
-.feedback-form textarea,
-.feedback-form select {
-  width:100%;
-  background:#090909;
-  border:1px solid #333;
-  color:white;
-  padding:14px;
-  outline:none;
-  font-family:var(--sans);
-  font-size:13px;
-}
-
-.feedback-form input:focus,
-.feedback-form textarea:focus,
-.feedback-form select:focus { border-color:var(--bright); }
-
-.feedback-form textarea {
-  min-height:140px;
-  resize:vertical;
-}
-
-.feedback-form button { margin-top:25px; }
-
-.form-warning {
-  color:#888;
-  font-size:11px;
-  line-height:1.7;
-  margin-top:15px;
-}
-
-.contact-section {
-  padding:90px 8% 120px;
-}
-
-.contact-section h1 {
-  font-size:clamp(50px,9vw,105px);
-  line-height:.95;
-  letter-spacing:-6px;
-  margin:20px 0 25px;
-}
-
-.contact-section h1 span { color:var(--bright); }
-
-.contact-section > p {
-  color:#999;
-  font-size:14px;
-  line-height:1.8;
-  max-width:480px;
-}
-
-.contact-links {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:15px;
-  margin-top:55px;
-  max-width:850px;
-}
-
-.contact-item {
-  border:1px solid #292929;
-  padding:28px;
-  background:#111;
-  transition:.2s;
-}
-
-.contact-item:hover { border-color:var(--bright); }
-
-.contact-item span {
-  display:block;
-  color:var(--bright);
-  font-family:var(--mono);
-  font-size:9px;
-  letter-spacing:2px;
-  margin-bottom:15px;
-}
-
-.contact-item strong {
-  font-size:16px;
-  font-weight:500;
-  overflow-wrap:anywhere;
-}
-
-footer {
-  border-top:1px solid var(--line);
-  padding:35px 7%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  color:#777;
-  font-family:var(--mono);
-  font-size:9px;
-  letter-spacing:1px;
-}
-
-footer strong { color:#ddd; font-family:var(--sans); font-size:14px; }
-
-@media(max-width:760px) {
-  nav { height:68px; padding:0 5%; }
-  .menu-button { display:block; }
-  .nav-links {
-    display:none;
-    position:absolute;
-    top:68px;
-    left:0;
-    right:0;
-    padding:25px;
-    background:#0c0c0c;
-    border-bottom:1px solid #292929;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:25px;
-  }
-  .nav-links.open { display:flex; }
-  .hero { min-height:570px; padding:90px 7%; }
-  .hero h1 { letter-spacing:-4px; }
-  .hero::after { right:-280px; }
-  .intro-section { grid-template-columns:1fr; gap:30px; padding:75px 7%; }
-  .collection-grid { grid-template-columns:1fr; padding:10px 5% 70px; }
-  .collection-card { min-height:280px; padding:30px; }
-  .section-heading { padding:65px 6% 35px; }
-  .collection-top { padding:45px 6% 30px; }
-  .product-section { padding:40px 5% 75px; }
-  .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:27px 12px; }
-  .product-info h3 { font-size:13px; }
-  .product-info p { font-size:8px; }
-  .modal { padding:12px; }
-  .modal-content { grid-template-columns:1fr; max-height:95vh; }
-  .modal-image { min-height:0; height:55vh; }
-  .modal-image img { max-height:55vh; }
-  .modal-details { padding:28px 24px; }
-  .modal-details h2 { font-size:34px; }
-  .view-controls { margin:20px 0; }
-  .input-section { grid-template-columns:1fr; gap:35px; padding:65px 6%; }
-  .feedback-form { padding:25px; }
-  .contact-section { padding:75px 6%; }
-  .contact-section h1 { letter-spacing:-3px; }
-  .contact-links { grid-template-columns:1fr; margin-top:40px; }
-  footer { flex-direction:column; align-items:flex-start; }
-}
-
-@media(max-width:380px) {
-  .product-grid { grid-template-columns:1fr; }
-}
+  --black:#090909;--panel:#111;--panel2:#171717;--white:#f1eee9;
+  --muted:#99938f;--red:#8d1828;--bright:#c52b40;--line:#292525;
+  --mono:'DM Mono',monospace;--sans:'Space Grotesk',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden}
+button,a{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+::selection{background:var(--red);color:white}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;background:rgba(9,9,9,.95);backdrop-filter:blur(14px)}
+.logo{font-size:19px;font-weight:700;letter-spacing:-1px;cursor:pointer}
+.logo span{color:var(--bright)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links button{color:#aaa;border:0;background:none;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;transition:.2s}
+.nav-links button:hover,.nav-links button.active{color:white}
+.nav-links button.active{border-bottom:1px solid var(--bright);padding-bottom:6px}
+.menu-button{display:none;background:none;color:white;border:0;font-size:24px}
+.page{display:none;min-height:75vh}
+.page.active{display:block}
+.eyebrow{font-family:var(--mono);color:var(--bright);font-size:10px;letter-spacing:3px;text-transform:uppercase}
+.hero{min-height:650px;padding:110px 8% 100px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::after{content:"";position:absolute;width:540px;height:540px;right:-120px;top:40px;border:1px solid rgba(164,34,52,.18);border-radius:50%;box-shadow:0 0 0 65px rgba(164,34,52,.025),0 0 0 130px rgba(164,34,52,.02);pointer-events:none}
+.hero h1{font-size:clamp(55px,10vw,130px);line-height:.88;letter-spacing:-8px;max-width:1000px;margin:28px 0;position:relative;z-index:1}
+.hero h1 span,.intro-section h2 span,.contact-section h1 span{color:var(--bright)}
+.hero-description{max-width:450px;color:#aaa;font-size:15px;line-height:1.8;margin-top:12px;position:relative;z-index:1}
+.hero-bottom{display:flex;align-items:center;gap:20px;margin-top:38px;position:relative;z-index:1}
+.primary-button{background:var(--red);border:1px solid var(--red);color:white;padding:15px 23px;font-family:var(--mono);font-size:10px;letter-spacing:2px;transition:.25s}
+.primary-button:hover{background:var(--bright)}
+.text-button{color:#aaa;border:0;background:none;font-family:var(--mono);font-size:10px;letter-spacing:1.5px}
+.text-button:hover{color:white}
+.ticker{overflow:hidden;border-bottom:1px solid var(--line);padding:17px 0;white-space:nowrap;color:#aaa;font-family:var(--mono);font-size:10px;letter-spacing:3px}
+.ticker span{color:var(--bright);padding:0 20px}
+.intro-section{padding:100px 8%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.intro-section h2{font-size:clamp(35px,5vw,62px);line-height:1;letter-spacing:-3px;margin-top:20px}
+.intro-copy{color:#aaa;line-height:1.9;font-size:14px}
+.intro-copy p+p{margin-top:18px}
+.section-heading{padding:85px 7% 45px}
+.section-heading h1{font-size:clamp(44px,7vw,82px);letter-spacing:-4px;line-height:1;margin:18px 0}
+.section-heading p{max-width:520px;color:var(--muted);font-size:14px;line-height:1.8}
+.collection-grid{padding:15px 7% 100px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.collection-card{background:var(--panel);border:1px solid var(--line);padding:40px;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;cursor:pointer;transition:.3s}
+.collection-card:hover{border-color:var(--bright);transform:translateY(-4px)}
+.collection-card::before{content:"";position:absolute;width:300px;height:300px;border:1px solid rgba(190,40,60,.2);border-radius:50%;top:-130px;right:-70px;box-shadow:0 0 0 35px rgba(190,40,60,.025),0 0 0 70px rgba(190,40,60,.025)}
+.collection-card .eyebrow,.collection-card h2,.collection-card p,.collection-card .explore{position:relative}
+.collection-card h2{font-size:clamp(30px,5vw,55px);letter-spacing:-2px;margin:16px 0 10px}
+.collection-card p{color:#999;font-size:13px;line-height:1.7;max-width:390px}
+.collection-card .explore{font-family:var(--mono);color:var(--bright);font-size:10px;letter-spacing:2px;margin-top:30px}
+.collection-top{padding:65px 7% 35px;border-bottom:1px solid var(--line)}
+.back-link{background:none;border:0;color:#aaa;font-family:var(--mono);font-size:10px;letter-spacing:1px;margin-bottom:35px}
+.back-link:hover{color:white}
+.collection-top h1{font-size:clamp(42px,7vw,78px);letter-spacing:-4px;margin:15px 0}
+.collection-top p{max-width:620px;color:#999;font-size:14px;line-height:1.8}
+.product-section{padding:55px 7% 100px}
+.product-section-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:30px}
+.product-section-heading h2{font-size:25px;letter-spacing:-1px}
+.product-section-heading span{font-family:var(--mono);font-size:10px;color:#888;letter-spacing:1px}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:35px 20px}
+.product-card{cursor:pointer;min-width:0}
+.product-image{aspect-ratio:4/5;background:#202020;overflow:hidden;border:1px solid #292929;position:relative}
+.product-image img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .5s}
+.product-card:hover .product-image img{transform:scale(1.035)}
+.product-overlay{position:absolute;bottom:12px;right:12px;background:rgba(9,9,9,.85);padding:9px 12px;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;color:white;opacity:0;transition:.2s}
+.product-card:hover .product-overlay{opacity:1}
+.product-info{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding-top:15px}
+.product-info h3{font-size:15px;font-weight:600;letter-spacing:.1px}
+.product-info p{font-family:var(--mono);color:#888;font-size:9px;letter-spacing:1px;margin-top:7px}
+.product-number{font-family:var(--mono);color:#777;font-size:10px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:100;display:none;align-items:center;justify-content:center;padding:25px;backdrop-filter:blur(8px)}
+.modal.open{display:flex}
+.modal-content{background:#111;border:1px solid #333;width:min(950px,100%);max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.1fr .9fr;position:relative}
+.modal-image{background:#202020;min-height:500px;display:flex;align-items:center;justify-content:center}
+.modal-image img{width:100%;height:100%;max-height:650px;object-fit:contain}
+.modal-details{padding:55px 35px;display:flex;flex-direction:column;justify-content:center}
+.modal-details h2{font-size:clamp(30px,4vw,48px);letter-spacing:-2px;line-height:1.05;margin:17px 0}
+.modal-details p{color:#999;font-size:13px;line-height:1.8}
+.view-controls{display:flex;gap:10px;margin:30px 0}
+.view-controls button{background:transparent;color:#aaa;border:1px solid #444;padding:12px 22px;font-family:var(--mono);font-size:10px;letter-spacing:2px}
+.view-controls button.selected{background:var(--red);border-color:var(--red);color:white}
+.back-note{font-family:var(--mono);font-size:9px;color:#888;letter-spacing:1px}
+.close-modal{position:absolute;top:15px;right:18px;border:0;background:none;color:white;font-size:28px;z-index:2}
+.input-section{padding:75px 7% 100px;display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.input-section h1{font-size:clamp(42px,6vw,70px);letter-spacing:-4px;line-height:1;margin:20px 0}
+.input-section h1 span{color:var(--bright)}
+.input-section .description{color:#999;font-size:14px;line-height:1.9;max-width:420px}
+.private-note{border-left:2px solid var(--red);padding:15px 18px;margin-top:30px;color:#aaa;font-size:12px;line-height:1.8;background:#111}
+.feedback-form{background:#111;border:1px solid #292929;padding:35px}
+.feedback-form label{display:block;color:#aaa;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;margin-bottom:10px;margin-top:22px}
+.feedback-form label:first-child{margin-top:0}
+.feedback-form input,.feedback-form textarea,.feedback-form select{width:100%;background:#090909;border:1px solid #333;color:white;padding:14px;outline:none;font-family:var(--sans);font-size:13px}
+.feedback-form input:focus,.feedback-form textarea:focus,.feedback-form select:focus{border-color:var(--bright)}
+.feedback-form textarea{min-height:140px;resize:vertical}
+.feedback-form button{margin-top:25px}
+.feedback-form button:disabled{opacity:.6;cursor:wait}
+.form-warning{color:#888;font-size:11px;line-height:1.7;margin-top:15px;min-height:18px}
+.contact-section{padding:90px 8% 120px}
+.contact-section h1{font-size:clamp(50px,9vw,105px);line-height:.95;letter-spacing:-6px;margin:20px 0 25px}
+.contact-section>p{color:#999;font-size:14px;line-height:1.8;max-width:480px}
+.contact-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:55px;max-width:850px}
+.contact-item{border:1px solid #292929;padding:28px;background:#111;transition:.2s}
+.contact-item:hover{border-color:var(--bright)}
+.contact-item span{display:block;color:var(--bright);font-family:var(--mono);font-size:9px;letter-spacing:2px;margin-bottom:15px}
+.contact-item strong{font-size:16px;font-weight:500;overflow-wrap:anywhere}
+footer{border-top:1px solid var(--line);padding:35px 7%;display:flex;justify-content:space-between;align-items:center;gap:20px;color:#777;font-family:var(--mono);font-size:9px;letter-spacing:1px}
+footer strong{color:#ddd;font-family:var(--sans);font-size:14px}
+
+@media(max-width:760px){
+nav{height:68px;padding:0 5%}
+.menu-button{display:block}
+.nav-links{display:none;position:absolute;top:68px;left:0;right:0;padding:25px;background:#0c0c0c;border-bottom:1px solid #292929;flex-direction:column;align-items:flex-start;gap:25px}
+.nav-links.open{display:flex}
+.hero{min-height:570px;padding:90px 7%}
+.hero h1{letter-spacing:-4px}
+.hero::after{right:-280px}
+.intro-section{grid-template-columns:1fr;gap:30px;padding:75px 7%}
+.collection-grid{grid-template-columns:1fr;padding:10px 5% 70px}
+.collection-card{min-height:280px;padding:30px}
+.section-heading{padding:65px 6% 35px}
+.collection-top{padding:45px 6% 30px}
+.product-section{padding:40px 5% 75px}
+.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:27px 12px}
+.product-info h3{font-size:13px}
+.product-info p{font-size:8px}
+.modal{padding:12px}
+.modal-content{grid-template-columns:1fr;max-height:95vh}
+.modal-image{min-height:0;height:55vh}
+.modal-image img{max-height:55vh}
+.modal-details{padding:28px 24px}
+.modal-details h2{font-size:34px}
+.view-controls{margin:20px 0}
+.input-section{grid-template-columns:1fr;gap:35px;padding:65px 6%}
+.feedback-form{padding:25px}
+.contact-section{padding:75px 6%}
+.contact-section h1{letter-spacing:-3px}
+.contact-links{grid-template-columns:1fr;margin-top:40px}
+footer{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:380px){.product-grid{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -730,7 +166,6 @@ footer strong { color:#ddd; font-family:var(--sans); font-size:14px; }
 
 <main>
 
-<!-- HOME -->
 <section class="page active" id="home">
   <div class="hero">
     <div class="eyebrow">INDEPENDENT STREETWEAR · PAKISTAN</div>
@@ -744,72 +179,48 @@ footer strong { color:#ddd; font-family:var(--sans); font-size:14px; }
       <button class="text-button" onclick="showPage('contact')">GET IN TOUCH ↗</button>
     </div>
   </div>
-
   <div class="ticker">
     CREATIVITY WITHOUT CONFORMITY <span>✳</span>
     NOT MADE TO BLEND IN <span>✳</span>
     FOR THE CREATIVELY DRIVEN <span>✳</span>
     CREATIVITY WITHOUT CONFORMITY <span>✳</span>
   </div>
-
   <div class="intro-section">
     <div>
       <div class="eyebrow">A LITTLE ABOUT US</div>
       <h2>WEAR YOUR<br><span>OWN WORLD</span></h2>
     </div>
     <div class="intro-copy">
-      <p>
-        Clothin' Pixels is an independent streetwear project built around
-        creativity, self-expression and the freedom to be different.
-      </p>
-      <p>
-        We bring together visual ideas, internet nostalgia and alternative
-        influences to create pieces that have something to say.
-      </p>
-      <p>
-        Not here to follow a formula. Here to make our own.
-      </p>
+      <p>Clothin' Pixels is an independent streetwear project built around creativity, self-expression and the freedom to be different.</p>
+      <p>We bring together visual ideas, internet nostalgia and alternative influences to create pieces that have something to say.</p>
+      <p>Not here to follow a formula. Here to make our own.</p>
     </div>
   </div>
 </section>
 
-<!-- COLLECTIONS -->
 <section class="page" id="collections">
   <div class="section-heading">
     <div class="eyebrow">THE CLOTHIN' PIXELS ARCHIVE</div>
     <h1>COLLECTIONS</h1>
-    <p>
-      Explore the pieces, the ideas behind them and the different worlds
-      they come from.
-    </p>
+    <p>Explore the pieces, the ideas behind them and the different worlds they come from.</p>
   </div>
-
   <div class="collection-grid">
     <div class="collection-card" onclick="showPage('altered')">
       <div class="eyebrow">COLLECTION 001 · 7 PIECES</div>
       <h2>ALTERED STATES</h2>
-      <p>
-        Different perspectives, different states of mind.
-        A collection shaped by images, ideas and individual expression.
-      </p>
+      <p>Different perspectives, different states of mind. A collection shaped by images, ideas and individual expression.</p>
       <div class="explore">EXPLORE COLLECTION ↗</div>
     </div>
   </div>
 </section>
 
-<!-- ALTERED STATES -->
 <section class="page" id="altered">
   <div class="collection-top">
     <button class="back-link" onclick="showPage('collections')">← BACK TO COLLECTIONS</button>
     <div class="eyebrow">COLLECTION 001</div>
     <h1>ALTERED STATES</h1>
-    <p>
-      A collection about different ways of seeing and experiencing the world.
-      Between reality and imagination, instinct and thought, memories and moments.
-      Each piece explores its own idea, with its own visual language.
-    </p>
+    <p>A collection about different ways of seeing and experiencing the world. Between reality and imagination, instinct and thought, memories and moments. Each piece explores its own idea, with its own visual language.</p>
   </div>
-
   <div class="product-section">
     <div class="product-section-heading">
       <h2>THE PIECES</h2>
@@ -819,21 +230,18 @@ footer strong { color:#ddd; font-family:var(--sans); font-size:14px; }
   </div>
 </section>
 
-<!-- YOUR INPUT -->
 <section class="page" id="input">
   <div class="input-section">
     <div>
       <div class="eyebrow">THE CONVERSATION IS OPEN</div>
-      <h1>YOUR<br><span style="color:var(--bright)">INPUT</span></h1>
-      <p class="description">
-        Have an idea for a future design? Something you'd like to see,
-        a concept worth exploring, or feedback about the collection?
-        We'd like to hear it.
-      </p>
+      <h1>YOUR<br><span>INPUT</span></h1>
+      <p class="description">Have an idea for a future design? Something you'd like to see, a concept worth exploring, or feedback about the collection? We'd like to hear it.</p>
       <div class="private-note">
         Share your thoughts, suggestions and ideas with us. Your feedback helps us make Clothin' Pixels better.
       </div>
-    </div>    <form class="feedback-form" onsubmit="demoFeedback(event)">
+    </div>
+
+    <form class="feedback-form" onsubmit="window.demoFeedback(event)">
       <label for="feedbackType">WHAT'S THIS ABOUT</label>
       <select id="feedbackType" required>
         <option value="">Choose a category</option>
@@ -844,26 +252,19 @@ footer strong { color:#ddd; font-family:var(--sans); font-size:14px; }
       </select>
 
       <label for="feedbackMessage">YOUR IDEA</label>
-      <textarea id="feedbackMessage" placeholder="Tell us what's on your mind..." required></textarea>
+      <textarea id="feedbackMessage" placeholder="Tell us what's on your mind..." required minlength="5" maxlength="2000"></textarea>
 
-      <button class="primary-button" type="submit">PREVIEW SUBMISSION</button>
-      <p class="form-warning" id="feedbackStatus">
-        Preview only — this form does not send or store submissions.
-      </p>
+      <button class="primary-button" type="submit">SUBMIT FEEDBACK</button>
+      <p class="form-warning" id="feedbackStatus" aria-live="polite"></p>
     </form>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="page" id="contact">
   <div class="contact-section">
     <div class="eyebrow">SAY HELLO</div>
     <h1>LET'S<br><span>CONNECT</span></h1>
-    <p>
-      Questions, collaborations or just want to talk?
-      Find us through the links below.
-    </p>
-
+    <p>Questions, collaborations or just want to talk? Find us through the links below.</p>
     <div class="contact-links">
       <a class="contact-item" href="mailto:clothinpixels@gmail.com">
         <span>EMAIL</span>
@@ -885,7 +286,6 @@ footer strong { color:#ddd; font-family:var(--sans); font-size:14px; }
   <span>© 2026 CLOTHIN' PIXELS</span>
 </footer>
 
-<!-- PRODUCT VIEWER -->
 <div class="modal" id="productModal" onclick="closeModalOutside(event)">
   <div class="modal-content">
     <button class="close-modal" onclick="closeModal()" aria-label="Close">×</button>
@@ -908,90 +308,69 @@ footer strong { color:#ddd; font-family:var(--sans); font-size:14px; }
 <script>
 const products = [
   {
-    name: "PARALLEL REALITY",
-    number: "01",
-    color: "WHITE",
-    front: "https://i.ibb.co/j928g3nN/13.png",
-    back: "https://i.ibb.co/v6W6Vg1K/15.png",
-    description: "A design exploring the space between reality and imagination. Geometric lines, a star and a moment caught somewhere in between."
+    name:"PARALLEL REALITY",number:"01",color:"WHITE",
+    front:"https://i.ibb.co/j928g3nN/13.png",
+    back:"https://i.ibb.co/v6W6Vg1K/15.png",
+    description:"A design exploring the space between reality and imagination. Geometric lines, a star and a moment caught somewhere in between."
   },
   {
-    name: "EPHEMERAL",
-    number: "02",
-    color: "WHITE",
-    front: "https://i.ibb.co/N6pN5t8B/16.png",
-    back: "https://i.ibb.co/v6W6Vg1K/15.png",
-    description: "Ephemeral means temporary or short-lived. A gothic-inspired graphic built around the idea of things that don't last forever."
+    name:"EPHEMERAL",number:"02",color:"WHITE",
+    front:"https://i.ibb.co/N6pN5t8B/16.png",
+    back:"https://i.ibb.co/v6W6Vg1K/15.png",
+    description:"Ephemeral means temporary or short-lived. A gothic-inspired graphic built around the idea of things that don't last forever."
   },
   {
-    name: "NATURAL INSTINCT",
-    number: "03",
-    color: "BLACK",
-    front: "https://i.ibb.co/bgSg7MQ6/17.png",
-    back: "https://i.ibb.co/N209pWtg/14.png",
-    description: "A spider-inspired graphic built around instinct, reaction and the things that happen before reason."
+    name:"NATURAL INSTINCT",number:"03",color:"BLACK",
+    front:"https://i.ibb.co/bgSg7MQ6/17.png",
+    back:"https://i.ibb.co/N209pWtg/14.png",
+    description:"A spider-inspired graphic built around instinct, reaction and the things that happen before reason."
   },
   {
-    name: "CAPTURE ME",
-    number: "04",
-    color: "BLACK",
-    front: "https://i.ibb.co/C3RszzRr/18.png",
-    back: "https://i.ibb.co/N209pWtg/14.png",
-    description: "A camera-centred design with a metallic, digital aesthetic. About capturing moments and keeping them in frame."
+    name:"CAPTURE ME",number:"04",color:"BLACK",
+    front:"https://i.ibb.co/C3RszzRr/18.png",
+    back:"https://i.ibb.co/N209pWtg/14.png",
+    description:"A camera-centred design with a metallic, digital aesthetic. About capturing moments and keeping them in frame."
   },
   {
-    name: "MUSIC OVER MONEY",
-    number: "05",
-    color: "BLACK",
-    front: "https://i.ibb.co/qLyGtTKL/19.png",
-    back: "https://i.ibb.co/N209pWtg/14.png",
-    description: "A statement about choosing passion over profit and keeping your own taste, identity and interests."
+    name:"MUSIC OVER MONEY",number:"05",color:"BLACK",
+    front:"https://i.ibb.co/qLyGtTKL/19.png",
+    back:"https://i.ibb.co/N209pWtg/14.png",
+    description:"A statement about choosing passion over profit and keeping your own taste, identity and interests."
   },
   {
-    name: "STARSTRUCK",
-    number: "06",
-    color: "BLACK",
-    front: "https://i.ibb.co/c9ZGM9v/20.png",
-    back: "https://i.ibb.co/N209pWtg/14.png",
-    description: "A portrait with a star detail and a bold visual identity. Made for a design that refuses to go unnoticed."
+    name:"STARSTRUCK",number:"06",color:"BLACK",
+    front:"https://i.ibb.co/c9ZGM9v/20.png",
+    back:"https://i.ibb.co/N209pWtg/14.png",
+    description:"A portrait with a star detail and a bold visual identity. Made for a design that refuses to go unnoticed."
   },
   {
-    name: "SCUDERIA FERRARI",
-    number: "07",
-    color: "WHITE",
-    front: "https://i.ibb.co/N6CGdZVJ/21.png",
-    back: "https://i.ibb.co/v6W6Vg1K/15.png",
-    description: "Inspired by Ferrari and motorsport culture. A graphic celebrating racing, speed and the visual history of the track."
+    name:"SCUDERIA FERRARI",number:"07",color:"WHITE",
+    front:"https://i.ibb.co/N6CGdZVJ/21.png",
+    back:"https://i.ibb.co/v6W6Vg1K/15.png",
+    description:"Inspired by Ferrari and motorsport culture. A graphic celebrating racing, speed and the visual history of the track."
   }
 ];
 
 let currentProduct = null;
-let currentView = "front";
 
-function showPage(pageId) {
-  document.querySelectorAll(".page").forEach(page => {
-    page.classList.remove("active");
+function showPage(pageId){
+  document.querySelectorAll(".page").forEach(page=>page.classList.remove("active"));
+  const page=document.getElementById(pageId);
+  if(page)page.classList.add("active");
+  document.querySelectorAll(".nav-links button").forEach(button=>{
+    button.classList.toggle("active",button.dataset.page===pageId);
   });
-
-  const page = document.getElementById(pageId);
-  if (page) page.classList.add("active");
-
-  document.querySelectorAll(".nav-links button").forEach(button => {
-    button.classList.toggle("active", button.dataset.page === pageId);
-  });
-
   document.getElementById("navLinks").classList.remove("open");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function toggleMenu() {
+function toggleMenu(){
   document.getElementById("navLinks").classList.toggle("open");
 }
 
-function renderProducts() {
-  const grid = document.getElementById("productGrid");
-
-  grid.innerHTML = products.map((product, index) => `
+function renderProducts(){
+  const grid=document.getElementById("productGrid");
+  grid.innerHTML=products.map((product,index)=>`
     <article class="product-card" onclick="openProduct(${index})">
       <div class="product-image">
         <img src="${product.front}" alt="${product.name} T-shirt front view" loading="lazy">
@@ -1008,68 +387,51 @@ function renderProducts() {
   `).join("");
 }
 
-function openProduct(index) {
-  currentProduct = products[index];
-  currentView = "front";
-
-  document.getElementById("modalTitle").textContent = currentProduct.name;
-  document.getElementById("modalNumber").textContent =
-    "ALTERED STATES · " + currentProduct.number;
-  document.getElementById("modalDescription").textContent =
-    currentProduct.description;
-
+function openProduct(index){
+  currentProduct=products[index];
+  document.getElementById("modalTitle").textContent=currentProduct.name;
+  document.getElementById("modalNumber").textContent="ALTERED STATES · "+currentProduct.number;
+  document.getElementById("modalDescription").textContent=currentProduct.description;
   document.getElementById("productModal").classList.add("open");
-  document.body.style.overflow = "hidden";
-
+  document.body.style.overflow="hidden";
   setProductView("front");
 }
 
-function setProductView(view) {
-  if (!currentProduct) return;
+function setProductView(view){
+  if(!currentProduct)return;
+  const image=document.getElementById("modalImage");
+  const note=document.getElementById("viewNote");
+  const frontButton=document.getElementById("frontButton");
+  const backButton=document.getElementById("backButton");
 
-  currentView = view;
-
-  const image = document.getElementById("modalImage");
-  const note = document.getElementById("viewNote");
-  const frontButton = document.getElementById("frontButton");
-  const backButton = document.getElementById("backButton");
-
-  if (view === "front") {
-    image.src = currentProduct.front;
-    image.alt = currentProduct.name + " front view";
-    note.textContent = "FRONT VIEW";
+  if(view==="front"){
+    image.src=currentProduct.front;
+    image.alt=currentProduct.name+" front view";
+    note.textContent="FRONT VIEW";
     frontButton.classList.add("selected");
     backButton.classList.remove("selected");
-  } else {
-    image.src = currentProduct.back;
-    image.alt = currentProduct.name + " back view";
-    note.textContent = "BACK VIEW · " + currentProduct.color + " T-SHIRT";
+  }else{
+    image.src=currentProduct.back;
+    image.alt=currentProduct.name+" back view";
+    note.textContent="BACK VIEW · "+currentProduct.color+" T-SHIRT";
     backButton.classList.add("selected");
     frontButton.classList.remove("selected");
   }
 }
 
-function closeModal() {
+function closeModal(){
   document.getElementById("productModal").classList.remove("open");
-  document.body.style.overflow = "";
+  document.body.style.overflow="";
 }
 
-function closeModalOutside(event) {
-  if (event.target.id === "productModal") closeModal();
-}
-
-function demoFeedback(event) {
-  event.preventDefault();
-
-  document.getElementById("feedbackStatus").textContent =
-    "Preview only. Nothing has been sent or saved because a private submission service has not been connected.";
-
-  document.getElementById("feedbackStatus").style.color = "#d78b8b";
+function closeModalOutside(event){
+  if(event.target.id==="productModal")closeModal();
 }
 
 renderProducts();
 </script>
 
+<!-- Load Supabase before the feedback script -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="./script.js"></script>
 
