@@ -1,0 +1,323 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --black: #080808;
+    --dark: #151313;
+    --burgundy: #571321;
+    --red: #a32c43;
+    --silver: #c7c1c3;
+    --white: #f4eeee;
+}
+
+body {
+    background: var(--black) !important;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* NAVIGATION */
+
+.navbar {
+    min-height: 85px;
+    padding: 20px 7%;
+    background: #101010 !important;
+    border-bottom: 1px solid #3b2027;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--red);
+    font-size: 12px;
+    vertical-align: top;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+nav a, .contact-link {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #c5babe;
+    transition: 0.3s;
+}
+
+nav a:hover, .contact-link:hover {
+    color: #c03d58;
+}
+
+/* HOMEPAGE */
+
+.hero {
+    min-height: 700px;
+    padding: 150px 10% 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 85% 45%, #591526 0%, transparent 40%),
+        linear-gradient(120deg, #080808 45%, #1c090e 100%) !important;
+}
+
+.eyebrow {
+    color: #c1aab0;
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-bottom: 28px;
+}
+
+.hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(75px, 12vw, 155px);
+    line-height: 0.82;
+    font-weight: 900;
+    letter-spacing: -3px;
+}
+
+.hero h1 span {
+    color: #a92e46;
+}
+
+.hero-description {
+    color: #b9aeb1;
+    font-size: 14px;
+    margin-top: 35px;
+    letter-spacing: 1px;
+}
+
+.explore-button {
+    margin-top: 35px;
+    padding: 18px 28px;
+    border: 1px solid #b7aeb1;
+    font-size: 10px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.explore-button:hover {
+    background: #641827;
+    border-color: #641827;
+}
+
+.hero-bottom {
+    position: absolute;
+    bottom: 30px;
+    left: 10%;
+    right: 10%;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: #9b858b;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+/* BRAND INTRODUCTION */
+
+.intro {
+    padding: 130px 12%;
+    background: #121010 !important;
+}
+
+.intro h2, .wardrobe h2, .collections h2, .feedback h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(65px, 9vw, 110px);
+    line-height: 0.9;
+    font-weight: 900;
+}
+
+.intro h2 span {
+    color: #a32c43;
+}
+
+.intro > p:last-child {
+    max-width: 520px;
+    margin-top: 30px;
+    color: #b5aaad;
+    line-height: 2;
+    font-size: 14px;
+}
+
+/* WARDROBE */
+
+.wardrobe {
+    padding: 120px 10%;
+    min-height: 380px;
+    text-align: center;
+    background: #080808 !important;
+}
+
+.wardrobe h2, .collections h2 {
+    color: #c7c1c3;
+}
+
+.wardrobe > p:last-child {
+    margin-top: 35px;
+    color: #a32c43;
+    font-size: 11px;
+    letter-spacing: 4px;
+}
+
+/* COLLECTIONS */
+
+.collections {
+    padding: 120px 10%;
+    background: #121010 !important;
+}
+
+.collections > p:not(.eyebrow) {
+    margin-top: 20px;
+    color: #b5aaad;
+    font-size: 13px;
+}
+
+.collection-card {
+    margin-top: 55px;
+    min-height: 340px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background:
+        radial-gradient(ellipse at 75% 25%, #792239, transparent 50%),
+        linear-gradient(120deg, #17080d, #35101b 70%, #10090b);
+    border: 1px solid #542432;
+    transition: 0.4s;
+}
+
+.collection-card:hover {
+    transform: translateY(-6px);
+    border-color: #c7c1c3;
+}
+
+.collection-card span {
+    color: #c7c1c3;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.collection-card h3 {
+    margin: 15px 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(45px, 8vw, 75px);
+}
+
+.collection-card p {
+    color: #d6aeb8;
+    font-size: 12px;
+}
+
+/* FEEDBACK */
+
+.feedback {
+    padding: 130px 10%;
+    text-align: center;
+    background: #080808 !important;
+}
+
+.feedback h2 {
+    color: #c7c1c3;
+}
+
+.feedback > p:last-child {
+    color: #b5aaad;
+    margin-top: 30px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 70px 10%;
+    text-align: center;
+    background: #121010 !important;
+    border-top: 1px solid #4b2731;
+}
+
+footer h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+footer h2 span {
+    color: #a32c43;
+    font-size: 12px;
+    vertical-align: top;
+}
+
+footer p {
+    margin-top: 17px;
+    color: #a69a9e;
+    font-size: 11px;
+}
+
+/* MOBILE */
+
+@media (max-width: 750px) {
+    .navbar {
+        padding: 22px 5%;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 9px;
+    }
+
+    .contact-link {
+        display: none;
+    }
+
+    .hero {
+        min-height: 620px;
+        padding: 130px 7% 50px;
+    }
+
+    .hero-bottom {
+        left: 7%;
+        right: 7%;
+        font-size: 7px;
+    }
+
+    .intro, .wardrobe, .collections, .feedback {
+        padding: 90px 7%;
+    }
+
+    .collection-card {
+        padding: 30px 22px;
+    }
+}
